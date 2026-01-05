@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import sys
+import os
 from pathlib import Path
 from datetime import datetime, timezone
 import aiohttp
@@ -116,10 +117,10 @@ def strip_newlines(data):
 
     return data
 
-async def fetch_pr_data(token, repo, pr_number):
+async def fetch_pr_data(session: aiohttp.ClientSession, repo, pr_number):
     pr_data = []
 
-    async def process_pr_data(session, number):
+    async def process_pr_data(number):
         pr_info = await get_pr_info(session, repo, number)
         if not pr_info or not pr_info.get("merged_at"):
             logging.warning(f"PR #{number} is not merged or does not exist.")
@@ -148,11 +149,10 @@ async def fetch_pr_data(token, repo, pr_number):
 
         return {"author": author, "changes": changes, "time": pr_info["merged_at"]} if changes else None
 
-    async with aiohttp.ClientSession(headers={"Authorization": f"token {token}", "Accept": "application/vnd.github.v3+json"}) as session:
-        tasks = [process_pr_data(session, number) for number in range(1, pr_number + 1)]
-        for result in await asyncio.gather(*tasks):
-            if result:
-                pr_data.append(result)
+    tasks = [process_pr_data(number) for number in range(1, pr_number + 1)]
+    for result in await asyncio.gather(*tasks):
+        if result:
+            pr_data.append(result)
 
     pr_data.sort(key=lambda x: x["time"])
     return pr_data
@@ -171,13 +171,23 @@ def update_changelog(file_path, new_entries):
     logging.info(f"Updated changelog saved to {file_path}")
 
 async def main():
-    if len(sys.argv) < 3:
-        logging.error("Usage: auto_cl.py <GITHUB_TOKEN> <REPO>")
+    if len(sys.argv) < 2:
+        logging.error("Usage: auto_cl.py <REPO>")
         sys.exit(1)
 
-    github_token, repo = sys.argv[1], sys.argv[2]
+    repo = sys.argv[1]
+    github_token = os.environ.get('GITHUB_TOKEN')
 
-    async with aiohttp.ClientSession(headers={"Authorization": f"token {github_token}", "Accept": "application/vnd.github.v3+json"}) as session:
+    if not github_token:
+        logging.error("GITHUB_TOKEN not found in environment")
+        sys.exit(1)
+
+    async with aiohttp.ClientSession(
+        headers={
+            "Authorization": f"Bearer {github_token}",
+            "Accept": "application/vnd.github.v3+json"
+        }
+    ) as session:
         logging.info(f"Fetching the latest PR number for repo: {repo}.")
         pr_number = await get_latest_pr_number(session, repo)
         if pr_number is None:
@@ -185,7 +195,7 @@ async def main():
             sys.exit(1)
 
         logging.info(f"Latest PR number is: {pr_number}. Fetching PR data.")
-        pr_data = await fetch_pr_data(github_token, repo, pr_number)
+        pr_data = await fetch_pr_data(session, repo, pr_number)
         update_changelog(CHANGELOG_PATH, pr_data)
 
 if __name__ == "__main__":

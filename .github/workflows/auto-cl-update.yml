@@ -32,7 +32,7 @@ jobs:
     - name: Run post-merge script
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python Tools/_Utopia/auto_cl.py "${{ secrets.PAT_CL_TOKEN }}" "${{ github.repository }}"
+      run: python Tools/_Utopia/auto_cl.py "${{ github.repository }}"
 
     - name: Configure Git
       run: |
@@ -46,7 +46,7 @@ jobs:
         git diff-index --quiet HEAD || git commit -m "Auto cl update"
       continue-on-error: true
 
-    - name: Push changes to a new branch
+    - name: Push changes to update-changelog branch
       if: steps.commit-changes.outcome == 'success'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
