@@ -6,7 +6,7 @@
   description: Translates speech.
   components:
   - type: Sprite
-    sprite: ADT/Objects/Devices/translator.rsi
+    sprite: _Utopia/Objects/Devices/translator.rsi
     state: icon
     layers:
       - state: icon
