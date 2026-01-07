@@ -371,6 +371,12 @@ namespace Content.Server.Database
                 .OwnsOne(p => p.HWId)
                 .Property(p => p.Type)
                 .HasDefaultValue(HwidType.Legacy);
+
+            // ADT Languages start
+            modelBuilder.Entity<Language>()
+                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.LanguageName })
+                .IsUnique();
+            // ADT Languages end
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -417,7 +423,7 @@ namespace Content.Server.Database
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
-
+        public List<Language> Languages { get; } = new(); // ADT Languages
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
         [Column("pref_unavailable")] public DbPreferenceUnavailableMode PreferenceUnavailable { get; set; }
@@ -540,6 +546,17 @@ namespace Content.Server.Database
          */
     }
 
+    #endregion
+
+    #region Languages
+    public class Language
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string LanguageName { get; set; } = null!;
+    }
     #endregion
 
     public enum DbPreferenceUnavailableMode

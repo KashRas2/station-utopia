@@ -2,6 +2,7 @@ using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Utopia.Language;
 
 namespace Content.Shared.Humanoid.Prototypes;
 
@@ -122,6 +123,17 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public int MaxAge = 120;
+
+    // Utopia-Tweak : Language
+    [DataField]
+    public List<ProtoId<LanguagePrototype>> UniqueLanguages = new();
+
+    [DataField]
+    public List<ProtoId<LanguagePrototype>> DefaultLanguages = new() { "GalacticCommon" };
+
+    [DataField]
+    public int MaxLanguages = 3;
+    // Utopia-Tweak : Language
 }
 
 public enum SpeciesNaming : byte

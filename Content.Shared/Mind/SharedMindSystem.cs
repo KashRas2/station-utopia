@@ -23,6 +23,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared.Utopia.Language;
 
 namespace Content.Shared.Mind;
 
@@ -700,7 +701,7 @@ public abstract partial class SharedMindSystem : EntitySystem
     /// <param name="uid">Uid of the target entity.</param>
     /// <param name="allowMovement">Whether the target entity should be able to move.</param>
     /// <param name="allowSpeech">Whether the target entity should be able to talk.</param>
-    public void MakeSentient(EntityUid uid, bool allowMovement = true, bool allowSpeech = true)
+    public void MakeSentient(EntityUid uid, bool allowMovement = true, bool allowSpeech = true, bool universalLang = true) // Utopia-Tweak : Language
     {
         EnsureComp<MindContainerComponent>(uid);
         if (allowMovement)
@@ -715,6 +716,21 @@ public abstract partial class SharedMindSystem : EntitySystem
             EnsureComp<SpeechComponent>(uid);
             EnsureComp<EmotingComponent>(uid);
         }
+
+        // Utopia-Tweak : Language
+        if (universalLang)
+        {
+            var lang = EnsureComp<LanguageSpeakerComponent>(uid);
+            if (!lang.Languages.ContainsKey("GalacticCommon"))
+            {
+                lang.Languages.Add("GalacticCommon", LanguageKnowledge.Speak);
+            }
+            else
+            {
+                lang.Languages["GalacticCommon"] = LanguageKnowledge.Speak;
+            }
+        }
+        // Utopia-Tweak : Language
 
         EnsureComp<ExaminerComponent>(uid);
     }

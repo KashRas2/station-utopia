@@ -24,6 +24,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Utopia.Language;
 
 namespace Content.Client.Lobby;
 
@@ -127,6 +128,12 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             {
                 _profileEditor.RefreshTraits();
             }
+            // Utopia-Tweak : Language
+            if (obj.WasModified<LanguagePrototype>())
+            {
+                _profileEditor.RefreshLanguages();
+            }
+            // Utopia-Tweak : Language
         }
     }
 
