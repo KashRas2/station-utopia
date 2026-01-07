@@ -126,10 +126,10 @@ public sealed partial class SpeciesPrototype : IPrototype
 
     // Utopia-Tweak : Language
     [DataField]
-    public List<ProtoId<LanguagePrototype>> UniqueLanguages = [];
+    public List<ProtoId<LanguagePrototype>> UniqueLanguages = new();
 
     [DataField]
-    public List<ProtoId<LanguagePrototype>> DefaultLanguages = ["GalacticCommon"];
+    public List<ProtoId<LanguagePrototype>> DefaultLanguages = new() { "GalacticCommon" };
 
     [DataField]
     public int MaxLanguages = 3;

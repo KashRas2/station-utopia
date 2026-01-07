@@ -652,7 +652,7 @@ binds:
   key: MouseRight
   canFocus: true
   # Utopia-Tweak : Language
-- function: OpenLanguagesMenu
+- function: OpenLanguageMenu
   type: State
   key: L
   # Utopia-Tweak : Language
