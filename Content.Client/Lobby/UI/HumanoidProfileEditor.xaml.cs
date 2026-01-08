@@ -362,7 +362,7 @@ namespace Content.Client.Lobby.UI
 
             #endregion Hair
 
-            // ADT Barks Start
+            // Utopia-Tweak : Barks
             #region Voice
 
             if (configurationManager.GetCVar(UCCVars.BarksEnabled))
@@ -372,7 +372,7 @@ namespace Content.Client.Lobby.UI
             }
 
             #endregion
-            // ADT Barks End
+            // Utopia-Tweak : Barks
 
             #region SpawnPriority
 

@@ -372,11 +372,11 @@ namespace Content.Server.Database
                 .Property(p => p.Type)
                 .HasDefaultValue(HwidType.Legacy);
 
-            // ADT Languages start
+            // Utopia-Tweak : Language
             modelBuilder.Entity<Language>()
                 .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.LanguageName })
                 .IsUnique();
-            // ADT Languages end
+            // Utopia-Tweak : Language
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
