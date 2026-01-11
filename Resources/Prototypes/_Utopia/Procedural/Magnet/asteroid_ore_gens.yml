@@ -1,9 +1,3 @@
-- type: weightedRandom
-  id: AsteroidOre
-  weights:
-    ADTOreCopper: 1.0
-    ADTOreLead: 0.5
-
 - type: oreDunGen
   id: UtopiaOreCopper
   replacement: AsteroidRock
