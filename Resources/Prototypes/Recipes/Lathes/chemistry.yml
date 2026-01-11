@@ -89,7 +89,7 @@
   materials:
     Plastic: 100
     Steel: 250
-    Copper: 100 #Utopia-Tweak
+    Copper: 100 # Utopia-Tweak : Ores
 
 - type: latheRecipe
   id: BaseChemistryEmptyVial
@@ -107,4 +107,4 @@
     Steel: 200
     Plastic: 300
     Glass: 500
-    Copper: 10 #Utopia-Tweak
+    Copper: 10 # Utopia-Tweak : Ores

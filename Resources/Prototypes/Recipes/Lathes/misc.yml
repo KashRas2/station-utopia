@@ -9,7 +9,7 @@
   materials:
     Steel: 50
     Glass: 200
-    Copper: 50 #Utopia-Tweak
+    Copper: 50 # Utopia-Tweak : Ores
 
 # Recipes
 
@@ -75,7 +75,7 @@
     Steel: 100
     Glass: 100
     Plastic: 100
-    Copper: 100 #Utopia-Tweak
+    Copper: 100 # Utopia-Tweak : Ores
 
 - type: latheRecipe
   parent: BaseToolRecipe
@@ -99,7 +99,7 @@
     Steel: 300
     Plastic: 300
     Glass: 100
-    Copper: 100 #Utopia-Tweak
+    Copper: 100 # Utopia-Tweak : Ores
 
 - type: latheRecipe
   id: PushHorn
@@ -117,7 +117,7 @@
   materials:
     Steel: 100
     Plastic: 50
-    Copper: 50 #Utopia-Tweak
+    Copper: 50 # Utopia-Tweak : Ores
 
 - type: latheRecipe
   id: AirTank
@@ -147,7 +147,7 @@
   materials:
     Steel: 1000
     Plastic: 500
-    Copper: 200 #Utopia-Tweak
+    Copper: 200 # Utopia-Tweak : Ores
 
 - type: latheRecipe
   id: ClothingShoesBootsMoon
@@ -164,7 +164,7 @@
     Steel: 1500
     Plastic: 1000
     Silver: 500
-    Copper: 1000 #Utopia-Tweak
+    Copper: 1000 # Utopia-Tweak : Ores
 
 - type: latheRecipe
   id: ClothingShoesBootsJump
