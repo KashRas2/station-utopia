@@ -2,7 +2,6 @@
   id: SheetCopper
   result: UtopiaSheetCopper1
   completetime: 0
-  miningPoints: 2
   materials:
     RawCopper: 100
 
@@ -17,7 +16,6 @@
   id: SheetLead
   result: UtopiaSheetLead1
   completetime: 0
-  miningPoints: 4
   materials:
     RawLead: 100
 

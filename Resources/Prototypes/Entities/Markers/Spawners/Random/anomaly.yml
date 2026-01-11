@@ -47,8 +47,8 @@
     - AnomalyRockQuartz
     - AnomalyRockUranium
     - AnomalyRockBananium
-    - ADTAnomalyRockCopper # Utopia-Tweak : Ores
-    - ADTAnomalyRockLead # Utopia-Tweak : Ores
+    - UtopiaAnomalyRockCopper # Utopia-Tweak : Ores
+    - UtopiaAnomalyRockLead # Utopia-Tweak : Ores
     chance: 1
     offset: 0.15
 
