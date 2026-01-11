@@ -1,0 +1,21 @@
+- type: weightedRandom
+  id: AsteroidOre
+  weights:
+    ADTOreCopper: 1.0
+    ADTOreLead: 0.5
+
+- type: oreDunGen
+  id: UtopiaOreCopper
+  replacement: AsteroidRock
+  entity: UtopiaAsteroidRockCopper
+  count: 5
+  minGroupSize: 5
+  maxGroupSize: 7
+
+- type: oreDunGen
+  id: UtopiaOreLead
+  replacement: AsteroidRock
+  entity: UtopiaAsteroidRockLead
+  count: 5
+  minGroupSize: 5
+  maxGroupSize: 7
